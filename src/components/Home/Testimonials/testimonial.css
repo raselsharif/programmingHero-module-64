@@ -1,0 +1,8 @@
+.swiper-slide img {
+    display: block;
+    width: 100px !important;
+}
+.rating-star {
+    display: flex;
+    justify-content: center;
+}

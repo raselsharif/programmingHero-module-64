@@ -17,7 +17,7 @@ import slider5 from "/home/slide5.jpg";
 
 const OrderOnline = () => {
   return (
-    <div>
+    <div className="mt-20">
       <SectionHeader
         subHeader={"From 11:00am to 10:00pm"}
         header={"ORDER ONLINE"}
