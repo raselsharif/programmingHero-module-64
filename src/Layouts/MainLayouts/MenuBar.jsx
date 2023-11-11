@@ -1,4 +1,5 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { NavLink } from "react-router-dom";
 
 const MenuBar = () => {
   return (
@@ -40,13 +41,22 @@ const MenuBar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-blue-500" : ""
+          }
+        >
           Home
-        </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        </NavLink>
+        <NavLink
+          to={"/menu"}
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-blue-500" : ""
+          }
+        >
+          Menu
+        </NavLink>
       </Navbar.Collapse>
     </Navbar>
   );

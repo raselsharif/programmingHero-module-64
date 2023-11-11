@@ -1,5 +1,5 @@
-const OurMenuCard = ({ menu }) => {
-  const { _id, image, price, recipe, category, name } = menu;
+const MenuCard = ({ items }) => {
+  const { _id, image, price, recipe, category, name } = items;
   return (
     <div className="max-w-[45%] flex gap-3">
       <img
@@ -20,4 +20,4 @@ const OurMenuCard = ({ menu }) => {
   );
 };
 
-export default OurMenuCard;
+export default MenuCard;
