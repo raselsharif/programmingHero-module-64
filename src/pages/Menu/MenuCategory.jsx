@@ -20,11 +20,13 @@ const MenuCategory = ({ item, coverImg, coverTitle }) => {
           <MenuCard key={items._id} items={items} />
         ))}
       </div>
-      <div className="flex justify-center mt-10">
-        <Link to={`/shop`}>
-          <Button>Order Your Favorite Food</Button>
-        </Link>
-      </div>{" "}
+      {coverTitle && (
+        <div className="flex justify-center mt-10">
+          <Link to={`/shop/${coverTitle}`}>
+            <Button>Order Your Favorite Food</Button>
+          </Link>
+        </div>
+      )}{" "}
     </div>
   );
 };

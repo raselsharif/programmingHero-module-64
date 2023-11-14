@@ -15,7 +15,7 @@ const PageCover = ({ coverBG, coverTitle, coverDesc }) => {
     >
       {/* <img src="./menu/banner3.jpg" alt="cover image" /> */}
       <div className="bg-black bg-opacity-50 text-white text-center py-20 px-60 ">
-        <h2 className="text-7xl">{coverTitle}</h2>
+        <h2 className="text-7xl uppercase">{coverTitle}</h2>
         <p className="text-2xl mt-4 max-w-5xl">{coverDesc}</p>
       </div>
     </div>

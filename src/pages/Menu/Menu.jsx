@@ -7,7 +7,6 @@ import saladCover from "/menu/salad-bg.jpg";
 import soupCover from "/menu/soup-bg.jpg";
 
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
-import MenuCard from "../../components/MenusCard/MenuCard";
 import useMenuAPI from "../../hooks/useMenuAPI";
 import MenuCategory from "./MenuCategory";
 
@@ -38,15 +37,19 @@ const Menu = () => {
         <MenuCategory
           item={dessert}
           coverImg={dessertCover}
-          coverTitle={"DESSERT"}
+          coverTitle={"desserts"}
         />
-        <MenuCategory item={pizza} coverImg={pizzaCover} coverTitle={"PIZZA"} />
+        <MenuCategory
+          item={pizza}
+          coverImg={pizzaCover}
+          coverTitle={"pizzas"}
+        />
         <MenuCategory
           item={salads}
           coverImg={saladCover}
-          coverTitle={"SALADS"}
+          coverTitle={"salads"}
         />
-        <MenuCategory item={soups} coverImg={soupCover} coverTitle={"SOUPS"} />
+        <MenuCategory item={soups} coverImg={soupCover} coverTitle={"soups"} />
       </div>
     </div>
   );
