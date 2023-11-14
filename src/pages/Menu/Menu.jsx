@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import PageCover from "../../components/PageCover/PageCover";
 import menuPageCover from "/menu/banner3.jpg";
 import dessertCover from "/menu/dessert-bg.jpeg";
+import pizzaCover from "/menu/pizza-bg.jpg";
 
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import MenuCard from "../../components/MenusCard/MenuCard";
@@ -11,6 +12,9 @@ const Menu = () => {
   const menus = useMenuAPI();
   const offered = menus.filter((item) => item.category === "offered");
   const dessert = menus.filter((item) => item.category === "dessert");
+  const pizza = menus.filter((item) => item.category === "pizza");
+  const salads = menus.filter((item) => item.category === "salad");
+  const soups = menus.filter((item) => item.category === "soup");
 
   console.log(offered);
   return (
@@ -42,6 +46,51 @@ const Menu = () => {
           />
           <div className="flex flex-wrap gap-4 max-w-[1320px] mx-auto mt-10">
             {dessert.map((items) => (
+              <MenuCard key={items._id} items={items} />
+            ))}
+          </div>
+        </div>
+        {/* pizza */}
+        <div className="mt-20">
+          <PageCover
+            coverBG={pizzaCover}
+            coverTitle={"PIZZA"}
+            coverDesc={
+              "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            }
+          />
+          <div className="flex flex-wrap gap-4 max-w-[1320px] mx-auto mt-10">
+            {pizza.map((items) => (
+              <MenuCard key={items._id} items={items} />
+            ))}
+          </div>
+        </div>
+        {/* salad */}
+        <div className="mt-20">
+          <PageCover
+            coverBG={pizzaCover}
+            coverTitle={"SALADS"}
+            coverDesc={
+              "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            }
+          />
+          <div className="flex flex-wrap gap-4 max-w-[1320px] mx-auto mt-10">
+            {salads.map((items) => (
+              <MenuCard key={items._id} items={items} />
+            ))}
+          </div>
+        </div>
+        {/* soup */}
+        <div className="mt-20">
+          <PageCover
+            coverBG={pizzaCover}
+            coverTitle={"SOUPS"}
+            coverDesc={
+              "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            }
+          />
+          <div className="flex flex-wrap gap-4 max-w-[1320px] mx-auto mt-10">
+            {soups.map((items) => (
               <MenuCard key={items._id} items={items} />
             ))}
           </div>
