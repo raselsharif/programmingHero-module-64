@@ -57,6 +57,14 @@ const MenuBar = () => {
         >
           Menu
         </NavLink>
+        <NavLink
+          to={"/shop"}
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-blue-500" : ""
+          }
+        >
+          Our Shop
+        </NavLink>
       </Navbar.Collapse>
     </Navbar>
   );

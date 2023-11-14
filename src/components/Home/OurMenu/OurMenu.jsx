@@ -3,6 +3,7 @@ import { Button } from "flowbite-react";
 import MenuCard from "../../MenusCard/MenuCard";
 import SectionHeader from "../../SectionHeader/SectionHeader";
 import useMenuAPI from "../../../hooks/useMenuAPI";
+import { Link } from "react-router-dom";
 
 const OurMenu = () => {
   const menus = useMenuAPI();
@@ -15,7 +16,9 @@ const OurMenu = () => {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <Button>Show All</Button>
+        <Link to={"/menu"}>
+          <Button>Show All</Button>
+        </Link>
       </div>
     </div>
   );
