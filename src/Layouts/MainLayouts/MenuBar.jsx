@@ -1,7 +1,16 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { NavLink } from "react-router-dom";
+import Login from "../../pages/Login/Login";
+import useAuth from "../../hooks/useAuth";
 
 const MenuBar = () => {
+  const { user, logOut } = useAuth();
+  console.log(user);
+  const handleLogOut = () => {
+    console.log("log out");
+    logOut();
+  };
+  Login;
   return (
     <Navbar fluid rounded>
       <Navbar.Brand className="flex flex-col gap-1">
@@ -29,14 +38,14 @@ const MenuBar = () => {
           <Dropdown.Header>
             <span className="block text-sm">Bonnie Green</span>
             <span className="block truncate text-sm font-medium">
-              name@flowbite.com
+              {user?.email}
             </span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Item>Earnings</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>

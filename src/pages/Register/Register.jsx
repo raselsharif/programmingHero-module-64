@@ -1,9 +1,11 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import useAuth from "../../hooks/useAuth";
 import { AuthContext } from "../../Providers/AuthProviders";
+import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
-  // const { registerEmailPass } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const { registerEmailPass } = useAuth(AuthContext);
   console.log(registerEmailPass);
   const handleRegister = (e) => {
@@ -17,6 +19,20 @@ const Register = () => {
     registerEmailPass(email, password)
       .then((result) => {
         console.log(result);
+        const user = {
+          name,
+          email,
+        };
+        if (result) {
+          axiosPublic
+            .post("/user", user)
+            .then((res) => {
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
       .catch((err) => {
         console.log(err);
