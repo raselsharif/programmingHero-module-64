@@ -3,6 +3,8 @@ import useAuth from "../../hooks/useAuth";
 import { AuthContext } from "../../Providers/AuthProviders";
 import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
@@ -39,7 +41,7 @@ const Register = () => {
       });
   };
   return (
-    <div className="max-w-md m-auto flex items-center h-[calc(100vh-250px)]">
+    <div className="max-w-md m-auto flex flex-col items-center h-[calc(100vh-250px)]">
       <form onSubmit={handleRegister} className="flex w-full flex-col gap-4">
         <div>
           <div className="mb-2 block">
@@ -85,6 +87,12 @@ const Register = () => {
         </div>
         <Button type="submit">Register new account</Button>
       </form>
+      <div className="my-3">
+        <Link to={"/register"}>
+          <Button>Go to Register</Button>
+        </Link>
+      </div>
+      <GoogleLogin />
     </div>
   );
 };

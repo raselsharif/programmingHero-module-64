@@ -1,6 +1,7 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 
 const Login = () => {
   const { loginEmailPass } = useAuth();
@@ -47,9 +48,12 @@ const Login = () => {
         </div>
         <Button type="submit">Login</Button>
       </form>
-      <div className="mt-3">
-        <Link to={"/register"}>Register</Link>
+      <div className="my-3">
+        <Link to={"/register"}>
+          <Button>Go to Register</Button>
+        </Link>
       </div>
+      <GoogleLogin />
     </div>
   );
 };
