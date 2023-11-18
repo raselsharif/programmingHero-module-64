@@ -3,6 +3,7 @@ import auth from "../configurations/firebase/firebase.confic";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  deleteUser,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -25,6 +26,9 @@ const AuthProviders = ({ children }) => {
   const logOut = () => {
     return signOut(auth);
   };
+  const removeUser = () => {
+    return deleteUser(auth.user);
+  };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currenUser) => {
       setUser(currenUser);
@@ -39,6 +43,7 @@ const AuthProviders = ({ children }) => {
     user,
     logOut,
     googleLogin,
+    removeUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

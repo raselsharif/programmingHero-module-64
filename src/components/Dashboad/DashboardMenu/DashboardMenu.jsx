@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import useUsers from "../../../hooks/useUsers";
 
 const DashboardMenu = () => {
+  const userLength = useUsers().length;
   return (
     <div className="flex flex-col gap-4 px-4 pt-20">
       <div className="flex flex-col border-b-2 pb-4">
@@ -42,7 +44,7 @@ const DashboardMenu = () => {
           }
           to={"/dashboard/all-users"}
         >
-          All Users
+          All Users ({userLength})
         </NavLink>
       </div>
       <div className="flex flex-col">
