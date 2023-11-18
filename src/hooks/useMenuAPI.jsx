@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
+import useAxiosPublic from "./useAxiosPublic";
+import axios from "axios";
 
 const useMenuAPI = () => {
   const [menus, setMenus] = useState([]);
-
+  // console.log(menus);
+  // axios.get("http://localhost:5000/menus").then((res) => {
+  //   setMenus(res.data);
+  // });
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
-    fetch("/menu.json")
-      .then((res) => res.json())
-      .then((data) => setMenus(data));
-  }, []);
+    axiosPublic
+      .get("/menus")
+      .then((res) => {
+        setMenus(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [axiosPublic]);
   return menus;
 };
 

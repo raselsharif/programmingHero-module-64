@@ -58,12 +58,20 @@ const MenuBar = () => {
           Menu
         </NavLink>
         <NavLink
-          to={"/shop"}
+          to={"/shop/salads"}
           className={({ isActive }) =>
             isActive ? "border-b-2 border-blue-500" : ""
           }
         >
           Our Shop
+        </NavLink>
+        <NavLink
+          to={"/login"}
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-blue-500" : ""
+          }
+        >
+          Login/Register
         </NavLink>
       </Navbar.Collapse>
     </Navbar>
