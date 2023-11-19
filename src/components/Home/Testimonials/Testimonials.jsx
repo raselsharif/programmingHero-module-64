@@ -10,7 +10,7 @@ import { Navigation } from "swiper/modules";
 
 const Testimonials = () => {
   const [review, setReview] = useState([]);
-  console.log(review);
+  // console.log(review);
   useEffect(() => {
     fetch("/reviews.json")
       .then((res) => res.json())

@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import useUsers from "../../../hooks/useUsers";
+import useMenuAPI from "../../../hooks/useMenuAPI";
 
 const DashboardMenu = () => {
   const userLength = useUsers().length;
+  const menuLength = useMenuAPI().length;
   return (
     <div className="flex flex-col gap-4 px-4 pt-20">
       <div className="flex flex-col border-b-2 pb-4">
@@ -28,7 +30,7 @@ const DashboardMenu = () => {
           }
           to={"/dashboard/manage-item"}
         >
-          Manage Item
+          Manage Item ({menuLength})
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -48,7 +50,7 @@ const DashboardMenu = () => {
         </NavLink>
       </div>
       <div className="flex flex-col">
-        <NavLink>Home</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
         <NavLink>Menu</NavLink>
         <NavLink>Shop</NavLink>
         <NavLink>Contact</NavLink>

@@ -11,6 +11,7 @@ import AddItem from "../pages/Dashboard/AddItem/AddItem";
 import ManageItem from "../pages/Dashboard/ManageItem/ManageItem";
 import MangeBooking from "../pages/Dashboard/MangeBooking/MangeBooking";
 import AllUser from "../pages/Dashboard/AllUser/AllUser";
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 
 const Routers = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const Routers = createBrowserRouter([
       {
         path: "/dashboard/all-users",
         element: <AllUser />,
+      },
+      {
+        path: "/dashboard/update-item/:id",
+        element: <UpdateItem />,
       },
     ],
   },

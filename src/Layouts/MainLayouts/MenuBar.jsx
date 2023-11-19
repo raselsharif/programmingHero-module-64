@@ -1,5 +1,5 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import useAuth from "../../hooks/useAuth";
 
@@ -24,29 +24,36 @@ const MenuBar = () => {
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded
-            />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              {user?.email}
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
-        </Dropdown>
+        {user ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={<Avatar alt="User settings" img={user?.photoURL} rounded />}
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">{user?.displayName}</span>
+              <span className="block truncate text-sm font-medium">
+                {user?.email}
+              </span>
+            </Dropdown.Header>
+            <Link to={"/dashboard"}>
+              <Dropdown.Item>Dashboard</Dropdown.Item>
+            </Link>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <NavLink
+            to={"/login"}
+            className={({ isActive }) =>
+              isActive ? "border-b-2 border-blue-500" : ""
+            }
+          >
+            Login/Register
+          </NavLink>
+        )}
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
@@ -73,14 +80,6 @@ const MenuBar = () => {
           }
         >
           Our Shop
-        </NavLink>
-        <NavLink
-          to={"/login"}
-          className={({ isActive }) =>
-            isActive ? "border-b-2 border-blue-500" : ""
-          }
-        >
-          Login/Register
         </NavLink>
       </Navbar.Collapse>
     </Navbar>

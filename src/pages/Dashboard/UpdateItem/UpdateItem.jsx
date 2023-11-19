@@ -1,15 +1,23 @@
 import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic.jsx";
-const AddItem = () => {
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+const ManageItem = () => {
   const axiosPublic = useAxiosPublic();
+  const params = useParams();
+  // console.log(params.id);
+  const [menu, setMenu] = useState();
+  useEffect(() => {
+    axiosPublic.get(`/menu/${params.id}`).then((res) => setMenu(res.data));
+  }, [axiosPublic, params.id]);
   const handleRecipeAdd = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.recipe.value;
+    const recipe = form.recipe.value;
     const category = form.category.value;
     const price = parseFloat(form.price.value);
-    const recipe = form.details.value;
-    const image = form.image.files[0];
+    const details = form.details.value;
+    const image = form.image?.files[0];
     const imageAPI = import.meta.env.VITE_imageBB;
     axiosPublic
       .post(
@@ -24,24 +32,24 @@ const AddItem = () => {
       .then((res) => {
         if (res.data.success) {
           const item = {
-            name,
+            recipe,
             category,
             price,
-            recipe,
+            details,
             image: res.data.data.display_url,
           };
-          axiosPublic.post("/add-item", item).then((res) => {
-            console.log("add item successfully");
+          axiosPublic.patch(`/update-item/${params.id}`, item).then((res) => {
+            console.log("Update item successfully");
           });
         }
       });
     console.log(imageAPI);
-    console.log(name, category, price, recipe, image);
+    console.log(recipe, category, price, details, image);
   };
   return (
     <div>
       <h2 className="text-center font-semibold text-2xl capitalize border-b-2 pb-2">
-        add item
+        manage item
       </h2>
       <div className="flex flex-col justify-center items-center mt-10">
         <form
@@ -58,6 +66,7 @@ const AddItem = () => {
               placeholder="Recipe Name"
               required
               shadow
+              defaultValue={menu?.name}
             />
           </div>
           <div className="flex justify-between gap-4">
@@ -70,7 +79,7 @@ const AddItem = () => {
                 name="category"
                 placeholder="Category"
                 required
-                shadow
+                defaultValue={menu?.category}
               />
             </div>
             <div className="w-full">
@@ -83,6 +92,7 @@ const AddItem = () => {
                 placeholder="Price"
                 required
                 shadow
+                defaultValue={menu?.price}
               />
             </div>
           </div>
@@ -97,14 +107,15 @@ const AddItem = () => {
               placeholder="Recipe details"
               required
               shadow
+              defaultValue={menu?.recipe}
             />
           </div>
-          <FileInput type="file" name="image" />
-          <Button type="submit">Add item</Button>
+          <FileInput type="file" defaultValue={menu?.image} name="image" />
+          <Button type="submit">Update item</Button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddItem;
+export default ManageItem;

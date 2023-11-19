@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
-import axios from "axios";
 
 const useMenuAPI = () => {
   const [menus, setMenus] = useState([]);
@@ -14,7 +13,7 @@ const useMenuAPI = () => {
       .get("/menus")
       .then((res) => {
         setMenus(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, [axiosPublic]);

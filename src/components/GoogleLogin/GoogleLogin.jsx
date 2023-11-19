@@ -1,10 +1,20 @@
 import { Button } from "flowbite-react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useState } from "react";
 
 const GoogleLogin = () => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, user } = useAuth();
+  // const loggedInUserEmail = user?.email;
+  // const [usersDB, setUsersDB] = useState([]);
+  // const [userDB, setUserDB] = useState({});
+  // usersDB?.map((user) => setUserDB(user));
+  // console.log(user);
+  // console.log(loggedInUserEmail);
   const axiosPublic = useAxiosPublic();
+  // axiosPublic.get("/users").then((res) => {
+  //   setUsersDB(res.data);
+  // });
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
