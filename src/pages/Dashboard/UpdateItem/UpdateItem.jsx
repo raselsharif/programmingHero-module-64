@@ -1,23 +1,24 @@
 import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 const ManageItem = () => {
   const axiosPublic = useAxiosPublic();
   const params = useParams();
   // console.log(params.id);
   const [menu, setMenu] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     axiosPublic.get(`/menu/${params.id}`).then((res) => setMenu(res.data));
   }, [axiosPublic, params.id]);
-  const handleRecipeAdd = (e) => {
+  const handleRecipeUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const recipe = form.recipe.value;
     const category = form.category.value;
     const price = parseFloat(form.price.value);
     const details = form.details.value;
-    const image = form.image?.files[0];
+    const image = form.image?.files[0] || menu?.image;
     const imageAPI = import.meta.env.VITE_imageBB;
     axiosPublic
       .post(
@@ -40,6 +41,7 @@ const ManageItem = () => {
           };
           axiosPublic.patch(`/update-item/${params.id}`, item).then((res) => {
             console.log("Update item successfully");
+            navigate("/dashboard/manage-item");
           });
         }
       });
@@ -53,7 +55,7 @@ const ManageItem = () => {
       </h2>
       <div className="flex flex-col justify-center items-center mt-10">
         <form
-          onSubmit={handleRecipeAdd}
+          onSubmit={handleRecipeUpdate}
           className="flex max-w-md flex-col gap-4"
         >
           <div>

@@ -32,9 +32,13 @@ const Carts = () => {
         <p className="font-semibold text-xl">
           Total Price: {totalPriceToFixed}
         </p>
-        <Link to={"/dashboard/payment"}>
-          <Button>Pay</Button>
-        </Link>
+        {carts?.length ? (
+          <Link to={"/dashboard/payment"}>
+            <Button>Pay</Button>
+          </Link>
+        ) : (
+          <Button disabled>Pay</Button>
+        )}
       </div>
       <div className="h-[calc(100vh-130px)] overflow-y-auto">
         <Table striped>

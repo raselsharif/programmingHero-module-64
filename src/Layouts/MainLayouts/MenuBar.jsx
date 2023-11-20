@@ -36,7 +36,7 @@ const MenuBar = () => {
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Link to={"/dashboard"}>
+            <Link to={"/dashboard/home"}>
               <Dropdown.Item>Dashboard</Dropdown.Item>
             </Link>
             <Dropdown.Item>Settings</Dropdown.Item>
