@@ -1,6 +1,5 @@
 import PageCover from "../../components/PageCover/PageCover";
 import useMenuAPI from "../../hooks/useMenuAPI";
-import OurShopCard from "./OurShopCard";
 import shopBG from "/shop/banner2.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
