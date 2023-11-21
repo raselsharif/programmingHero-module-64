@@ -51,7 +51,7 @@ const ManageItem = () => {
   return (
     <div>
       <h2 className="text-center font-semibold text-2xl capitalize border-b-2 pb-2">
-        manage item
+        Update Item
       </h2>
       <div className="flex flex-col justify-center items-center mt-10">
         <form
