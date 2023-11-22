@@ -12,11 +12,12 @@ const CheckOut = () => {
   const [clientSecret, setClientSecret] = useState("");
   // console.log(clientSecret);
   const axiosPublic = useAxiosPublic();
-  const [cart, setCart] = useState([]);
-  const totalPrice = cart.reduce((total, cart) => total + cart.price, 0);
+  const [carts, setCarts] = useState([]);
+  console.log(carts);
+  const totalPrice = carts.reduce((total, cart) => total + cart.price, 0);
   // console.log(totalPrice);
   useEffect(() => {
-    axiosPublic.get("/carts").then((res) => setCart(res.data));
+    axiosPublic.get("/carts").then((res) => setCarts(res.data));
   }, [axiosPublic]);
   useEffect(() => {
     if (totalPrice > 0) {
@@ -62,6 +63,18 @@ const CheckOut = () => {
       // console.log("payment successful", paymentIntent);
       if (paymentIntent.status == "succeeded") {
         console.log("payment successful");
+        // save to db payment info
+        const payment = {
+          email: user?.email,
+          price: totalPrice,
+          date: new Date(),
+          transactionId: paymentIntent?.id,
+          cartId: carts.map((item) => item._id),
+          menuItemId: carts.map((item) => item.menuId),
+        };
+        axiosPublic.post("/payment", payment).then((res) => {
+          console.log(res.data);
+        });
       }
     }
   };
@@ -87,7 +100,11 @@ const CheckOut = () => {
         ></CardElement>
         <p className="text-red-500 mt-2">{error}</p>
         <p className="text-green-500 mt-2">{successful}</p>
-        <Button className="mt-6" type="submit" disabled={!stripe}>
+        <Button
+          className="mt-6"
+          type="submit"
+          disabled={!stripe || !totalPrice}
+        >
           Pay
         </Button>
       </form>
